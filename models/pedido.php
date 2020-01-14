@@ -90,7 +90,8 @@ class Pedido{
 	}
 
 	public function getAll(){
-		$productos = $this->db->query("SELECT * FROM pedidos ORDER BY id DESC");
+		$productos = $this->db->query("SELECT p.*,CONCAT(u.nombre,' ',u.apellidos) as nya FROM pedidos p,usuarios u
+                     where u.id=p.usuario_id ORDER BY id DESC");
 		return $productos;
 	}
 	

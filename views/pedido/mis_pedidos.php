@@ -9,11 +9,11 @@
 		<th>Coste</th>
 		<th>Fecha</th>
 		<th>Estado</th>
+        <?php if(isset($gestion)): ?>
+            <th>Usuario</th>
+        <?php endif;?>
 	</tr>
-	<?php
-	while ($ped = $pedidos->fetch_object()):
-		?>
-
+	<?php while ($ped = $pedidos->fetch_object()):?>
 		<tr>
 			<td>
 				<a href="<?= base_url ?>pedido/detalle&id=<?= $ped->id ?>"><?= $ped->id ?></a>
@@ -27,7 +27,11 @@
 			<td>
 				<?=Utils::showStatus($ped->estado)?>
 			</td>
-		</tr>
-
+            <?php if(isset($gestion)): ?>
+                <td>
+                    <?=$ped->nya; ?>
+                </td>
+            <?php endif;?>
+        </tr>
 	<?php endwhile; ?>
 </table>
