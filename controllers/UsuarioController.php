@@ -70,8 +70,12 @@ class usuarioController{
 		if(isset($_SESSION['identity'])){
 			unset($_SESSION['identity']);
 		}
-		
-		if(isset($_SESSION['admin'])){
+
+        if(isset($_SESSION['carrito'])){
+            unset($_SESSION['carrito']);
+        }
+
+        if(isset($_SESSION['admin'])){
 			unset($_SESSION['admin']);
 		}
 		
