@@ -1,5 +1,8 @@
 <?php
 
+/* Clase con metodos estaticos
+ * que seran usados en todo el sitio
+ */
 class Utils{
 	
 	public static function deleteSession($name){
