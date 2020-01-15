@@ -68,3 +68,9 @@ class Utils{
 	}
 	
 }
+
+
+function show_error(){
+    $error = new errorController();
+    $error->index();
+}

@@ -1,5 +1,8 @@
 <?php
+//Inicio uso de sesiones
 session_start();
+
+//Cargo archivos necesarios
 require_once 'autoload.php';
 require_once 'config/db.php';
 require_once 'config/parameters.php';
@@ -7,10 +10,6 @@ require_once 'helpers/utils.php';
 require_once 'views/layout/header.php';
 require_once 'views/layout/sidebar.php';
 
-function show_error(){
-	$error = new errorController();
-	$error->index();
-}
 
 if(isset($_GET['controller'])){
 	$nombre_controlador = $_GET['controller'].'Controller';
@@ -40,5 +39,3 @@ if(class_exists($nombre_controlador)){
 }
 
 require_once 'views/layout/footer.php';
-
-
