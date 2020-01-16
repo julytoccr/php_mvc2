@@ -1,5 +1,4 @@
 <?php
-require_once 'models/producto.php';
 
 class carritoController{
 	
@@ -31,7 +30,7 @@ class carritoController{
 		
 		if(!isset($counter) || $counter == 0){
 			// Conseguir producto
-			$producto = new Producto();
+			$producto = new ProductoModelo();
 			$producto->setId($producto_id);
 			$producto = $producto->getOne();
 

@@ -1,12 +1,10 @@
 <?php
-require_once 'models/categoria.php';
-require_once 'models/producto.php';
 
 class categoriaController{
 	
 	public function index(){
 		Utils::isAdmin();
-		$categoria = new Categoria();
+		$categoria = new CategoriaModelo();
 		$categorias = $categoria->getAll();
 		
 		require_once 'views/categoria/index.php';
@@ -17,12 +15,12 @@ class categoriaController{
 			$id = $_GET['id'];
 			
 			// Conseguir categoria
-			$categoria = new Categoria();
+			$categoria = new CategoriaModelo();
 			$categoria->setId($id);
 			$categoria = $categoria->getOne();
 			
 			// Conseguir productos;
-			$producto = new Producto();
+			$producto = new ProductoModelo();
 			$producto->setCategoria_id($id);
 			$productos = $producto->getAllCategory();
 		}
@@ -39,7 +37,7 @@ class categoriaController{
 		Utils::isAdmin();
 	    if(isset($_POST) && isset($_POST['nombre'])){
 			// Guardar la categoria en bd
-			$categoria = new Categoria();
+			$categoria = new CategoriaModelo();
 			$categoria->setNombre($_POST['nombre']);
 			$save = $categoria->save();
 		}

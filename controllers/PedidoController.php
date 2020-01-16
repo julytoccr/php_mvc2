@@ -1,5 +1,5 @@
 <?php
-require_once 'models/pedido.php';
+
 
 class pedidoController{
 	
@@ -20,7 +20,7 @@ class pedidoController{
 				
 			if($provincia && $localidad && $direccion){
 				// Guardar datos en bd
-				$pedido = new Pedido();
+				$pedido = new PedidoModelo();
 				$pedido->setUsuario_id($usuario_id);
 				$pedido->setProvincia($provincia);
 				$pedido->setLocalidad($localidad);
@@ -52,12 +52,12 @@ class pedidoController{
 	public function confirmado(){
 		if(isset($_SESSION['identity'])){
 			$identity = $_SESSION['identity'];
-			$pedido = new Pedido();
+			$pedido = new PedidoModelo();
 			$pedido->setUsuario_id($identity->id);
 			
 			$pedido = $pedido->getOneByUser();
 			
-			$pedido_productos = new Pedido();
+			$pedido_productos = new PedidoModelo();
 			$productos = $pedido_productos->getProductosByPedido($pedido->id);
 		}
 		require_once 'views/pedido/confirmado.php';
@@ -66,7 +66,7 @@ class pedidoController{
 	public function mis_pedidos(){
 		Utils::isIdentity();
 		$usuario_id = $_SESSION['identity']->id;
-		$pedido = new Pedido();
+		$pedido = new PedidoModelo();
 		
 		// Sacar los pedidos del usuario
 		$pedido->setUsuario_id($usuario_id);
@@ -82,12 +82,12 @@ class pedidoController{
 			$id = $_GET['id'];
 			
 			// Sacar el pedido
-			$pedido = new Pedido();
+			$pedido = new PedidoModelo();
 			$pedido->setId($id);
 			$pedido = $pedido->getOne();
 			
 			// Sacar los poductos
-			$pedido_productos = new Pedido();
+			$pedido_productos = new PedidoModelo();
 			$productos = $pedido_productos->getProductosByPedido($id);
 			
 			require_once 'views/pedido/detalle.php';
@@ -100,7 +100,7 @@ class pedidoController{
 		Utils::isAdmin();
 		$gestion = true;
 		
-		$pedido = new Pedido();
+		$pedido = new PedidoModelo();
 		$pedidos = $pedido->getAll();
 		
 		require_once 'views/pedido/mis_pedidos.php';
@@ -114,7 +114,7 @@ class pedidoController{
 			$estado = $_POST['estado'];
 			
 			// Upadate del pedido
-			$pedido = new Pedido();
+			$pedido = new PedidoModelo();
 			$pedido->setId($id);
 			$pedido->setEstado($estado);
 			$pedido->edit();

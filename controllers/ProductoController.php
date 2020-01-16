@@ -1,10 +1,10 @@
 <?php
-require_once 'models/producto.php';
+
 
 class productoController{
 	
 	public function index(){
-		$producto = new Producto();
+		$producto = new ProductoModelo();
 		$productos = $producto->getRandom(6);
 	
 		// renderizar vista
@@ -15,7 +15,7 @@ class productoController{
 		if(isset($_GET['id'])){
 			$id = $_GET['id'];
 		
-			$producto = new Producto();
+			$producto = new ProductoModelo();
 			$producto->setId($id);
 			
 			$product = $producto->getOne();
@@ -27,7 +27,7 @@ class productoController{
 	public function gestion(){
 		Utils::isAdmin();
 		
-		$producto = new Producto();
+		$producto = new ProductoModelo();
 		$productos = $producto->getAll();
 		
 		require_once 'views/producto/gestion.php';
@@ -49,7 +49,7 @@ class productoController{
 			// $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : false;
 			
 			if($nombre && $descripcion && $precio && $stock && $categoria){
-				$producto = new Producto();
+				$producto = new ProductoModelo();
 				$producto->setNombre($nombre);
 				$producto->setDescripcion($descripcion);
 				$producto->setPrecio($precio);
@@ -102,7 +102,7 @@ class productoController{
 			$id = $_GET['id'];
 			$edit = true;
 			
-			$producto = new Producto();
+			$producto = new ProductoModelo();
 			$producto->setId($id);
 			
 			$pro = $producto->getOne();
@@ -119,7 +119,7 @@ class productoController{
 		
 		if(isset($_GET['id'])){
 			$id = $_GET['id'];
-			$producto = new Producto();
+			$producto = new ProductoModelo();
 			$producto->setId($id);
 			
 			$delete = $producto->delete();

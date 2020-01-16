@@ -1,5 +1,4 @@
 <?php
-require_once 'models/usuario.php';
 
 class usuarioController{
 	
@@ -20,7 +19,7 @@ class usuarioController{
 			$password = isset($_POST['password']) ? $_POST['password'] : false;
 			
 			if($nombre && $apellidos && $email && $password){
-				$usuario = new Usuario();
+				$usuario = new UsuarioModelo();
 				$usuario->setNombre($nombre);
 				$usuario->setApellidos($apellidos);
 				$usuario->setEmail($email);
@@ -45,7 +44,7 @@ class usuarioController{
 		if(isset($_POST)){
 			// Identificar al usuario
 			// Consulta a la base de datos
-			$usuario = new Usuario();
+			$usuario = new UsuarioModelo();
 			$usuario->setEmail($_POST['email']);
 			$usuario->setPassword($_POST['password']);
 			

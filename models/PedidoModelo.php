@@ -1,6 +1,6 @@
 <?php
 
-class Pedido{
+class PedidoModelo{
 	private $id;
 	private $usuario_id;
 	private $provincia;
